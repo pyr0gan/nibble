@@ -26,8 +26,8 @@ const debug = process.argv.pop() === '--debug'
 
 // Use the correct build command based on the `--debug` flag
 const buildCmd = debug
-  ? 'npm run build:debug'
-  : 'npm run build'
+  ? 'yarn run build:debug'
+  : 'yarn run build'
 
 // Execute the build command, storing exit code for later use
 const { code } = sh.exec(buildCmd)

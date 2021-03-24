@@ -1,16 +1,14 @@
 {
-  "name": "you_should_rename_your_contract",
+  "name": "main",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "private": true,
  "scripts": {
     "build": "yarn build:as",
-    "build:as": "yarn asb ../contract/assembly/main.ts",
-    "build:rs": "(cd contracts/rust && ./build.sh)",
+    "build:as": "yarn asb ./assembly/main.ts",
     "clean": "rm -rf ./out && (cd contracts/rust && cargo clean)",
     "test": "yarn test:unit:as && yarn test:unit:rs",
-    "test:unit:as": "npx asp --verbose --nologo -c ../contract/assembly/as-pect.config.js -f unit.spec",
-    "test:unit:rs": "(cd contracts/rust && cargo test -- --nocapture --color always)"
+    "test:unit:as": "yarn asp --verbose --nologo -c ../contract/assembly/as-pect.config.js -f unit.spec"
   },
   "dependencies": {
     "near-sdk-as": "2.2.4"

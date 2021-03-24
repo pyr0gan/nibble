@@ -1,13 +1,13 @@
-nibble
+# NIBBLE - NEAR Interactive Building Block Learning Environment
 ==================
 
-This [React] app was initialized with [create-near-app]
+This [React] app was initialized with [create-near-app] and enhanced with several interesting features by the Figment Learn team.
 
 
 Quick Start
 ===========
 
-To run this project locally:
+Using gitpod is the best option, but if you want to run this project locally:
 
 1. Prerequisites: Make sure you've installed [Node.js] ≥ 12
 2. Install dependencies: `yarn install`

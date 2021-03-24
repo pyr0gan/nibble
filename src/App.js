@@ -154,6 +154,7 @@ export default function App() {
             </div>
           </fieldset>
         </form>
+
         <p>
           Look at that! A Hello World app! This greeting is stored on the NEAR blockchain. Check it out:
         </p>
@@ -170,8 +171,11 @@ export default function App() {
         <p>
           To keep learning, check out <a target="_blank" rel="noreferrer" href="https://docs.near.org">the NEAR docs</a> or look through some <a target="_blank" rel="noreferrer" href="https://examples.near.org">example apps</a>.
         </p>
+
       </main>
+
       {showNotification && <Notification />}
+      
     </>
   )
 }

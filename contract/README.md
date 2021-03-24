@@ -13,9 +13,9 @@ Before you compile this code, you will need to install [Node.js] ≥ 12
 Exploring The Code
 ==================
 
-1. The main smart contract code lives in `assembly/index.ts`. You can compile
+1. The main smart contract code lives in `assembly/main.ts`. You can compile
    it with the `./compile` script.
-2. Tests: You can run smart contract tests with the `./test` script. This runs
+2. Tests: You can run smart contract tests with the `yarn run test:unit:as`. This runs
    standard AssemblyScript tests using [as-pect].
 
 

@@ -5,17 +5,18 @@
 /contract/node_modules
 /.pnp
 .pnp.js
-/out
 
 #keys
 /neardev
-
 
 # testing
 /coverage
 
 # production
 /build
+/contract/build
+/out
+/dist
 
 # misc
 .cache
