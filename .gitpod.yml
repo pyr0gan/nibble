@@ -1,6 +1,6 @@
-image:
-  file: .gitpod.Dockerfile
-
 tasks:
-  - init: yarn install
+  - init: yarn
     command: yarn dev
+ports:
+  - port: 1234
+    onOpen: open-browser
