@@ -1,17 +1,40 @@
 import 'regenerator-runtime/runtime';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { appStore, onAppMount } from './state/app';
+import { Wallet } from './components/Wallet';
+import { Contract } from './components/Contract';
+import { Keys } from './components/Keys';
+import { Gallery } from './components/Gallery';
 import { login, logout, } from './utils';
 import './global.css';
 import logowhite from './assets/logo-white.svg';
-import { Layout, Button, Typography, Avatar } from 'antd';
+import { Layout, Button, Typography, Avatar, Carousel, Tooltip, Popover } from 'antd';
+import 'antd/dist/antd.dark.css';
 import { HighlightOutlined, SmileOutlined, SmileFilled, UserOutlined } from '@ant-design/icons';
 
 import getConfig from './config';
+import { configConsumerProps } from 'antd/lib/config-provider';
+
+const content = (
+    <div>
+        <p> <Gallery /> </p>
+    </div>
+);
+
+const contentStyle = {
+    height: '200px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+};
+
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');
 const { Paragraph } = Typography;
 const { Header, Footer, Content } = Layout;
 
 export default function App() {
+
     // use React Hooks to store greeting in component state
     const [greeting, setGreeting] = React.useState();
 
@@ -73,76 +96,33 @@ export default function App() {
         // use React Fragment, <>, to avoid wrapping elements in unnecessary divs
         <>
             <Layout>
-                <Header>
-                    <p style={{ fontSize: 'medium', verticalAlign: 'middle' }}> <Avatar icon={<UserOutlined />} /> <label htmlFor="greeting" style={{ color: 'var(--secondary)', borderBottom: '0px solid var(--secondary)' }}>{greeting}</label> {window.accountId}
-                        <Button type='primary' style={{ float: 'right', borderStyle: 'outset', borderWidth: '2px', fontSize: 'medium' }} onClick={logout}>
-                            🚀<img src={logowhite} width='32px' style={{ cursor: 'crosshair', verticalAlign: 'middle' }} /> Sign out
-                    </Button></p>
+                <Header style={{ background: 'rgba(0,0,0,25)', borderRadius: '4px', borderColor: 'rgb(255,255,0)', borderWidth: '2px' }}>
+                    <label style={{ fontSize: 'medium', background: 'rgba(0,1,1,15)', borderStyle: 'solid', borderRadius: '5px', borderWidth: '1px', padding: '16px', verticalAlign: 'middle', width: 'justify', textAlign: 'justify' }}>
+                        <Popover content={content} title="Account Balance">
+                            <Avatar size={48} icon={<UserOutlined />} /> <label htmlFor="greeting" style={{ color: 'var(--secondary)', borderBottom: '0px solid var(--secondary)' }}> {greeting} </label> {window.accountId}
+                        </Popover>
+                    </label>
+                    <Button type='primary' style={{ float: 'right', borderStyle: 'outset', borderWidth: '2px', fontSize: 'small', marginTop: '1.5em', marginBottom: '1.5em', textTransform: 'uppercase' }} onClick={logout}>
+                        Sign Out
+                    </Button>
                 </Header>
                 <Layout>
                     <Content>
                         <main>
-
-                            <label htmlFor="greeting" style={{ color: 'var(--secondary)', borderBottom: '0px solid var(--secondary)' }}>
-                                {greeting}
-                            </label>
-                            {' '/* React trims whitespace around tags; insert literal space character when needed */}
-                            {window.accountId}!
-
-                            <form onSubmit={async event => {
-                                event.preventDefault();
-
-                                // get elements from the form using their id attribute
-                                const { fieldset, greeting } = event.target.elements;
-
-                                // hold onto new user-entered value from React's SynthenticEvent for use after `await` call
-                                const newGreeting = greeting.value;
-
-                                // disable the form while the value gets updated on-chain
-                                fieldset.disabled = true;
-
-                                try {
-                                    // make an update call to the smart contract
-                                    await window.contract.setGreeting({
-                                        // pass the value that the user entered in the greeting field
-                                        message: newGreeting
-                                    });
-                                } catch (e) {
-                                    alert(
-                                        'Something went wrong! ' +
-                                        'Maybe you need to sign out and back in? ' +
-                                        'Check your browser console for more info.'
-                                    );
-                                    throw e;
-                                } finally {
-                                    // re-enable the form, whether the call succeeded or failed
-                                    fieldset.disabled = false;
-                                }
-
-                                // update local `greeting` variable to match persisted value
-                                setGreeting(newGreeting);
-
-                                // show Notification
-                                setShowNotification(true);
-
-                                // remove Notification again after css animation completes
-                                // this allows it to be shown again next time the form is submitted
-                                setTimeout(() => {
-                                    setShowNotification(false);
-                                }, 11000);
-                            }}>
-                                <fieldset id="fieldset">
-                                    <label htmlFor="greeting" style={{ display: 'block', color: 'var(--gray)', marginBottom: '0.5em' }}>
-                                        Change greeting
-                   </label>
-                                    <div style={{ display: 'flex' }}>
-                                        <input autoComplete="off" defaultValue={greeting} id="greeting" onChange={e => setButtonDisabled(e.target.value === greeting)} style={{ flex: 1 }} />
-                                        <button disabled={buttonDisabled} style={{ borderRadius: '0 5px 5px 0' }}>
-                                            Save
-                    </button>
-                                    </div>
-                                </fieldset>
-                            </form>
+                            <Carousel autoplay>
+                                <div>
+                                    <h3 style={contentStyle}><img src={logowhite} size={30} style={{ width: '40px', }} /><p>dope</p></h3>
+                                </div>
+                                <div>
+                                    <h3 style={contentStyle}><img src={logowhite} size={30} style={{ width: '40px', }} /></h3>
+                                </div>
+                                <div>
+                                    <h3 style={contentStyle}><img src={logowhite} size={30} style={{ width: '40px', }} /></h3>
+                                </div>
+                                <div>
+                                    <h3 style={contentStyle}><img src={logowhite} size={30} style={{ width: '40px', }} /></h3>
+                                </div>
+                            </Carousel>
 
                         </main>
 
@@ -172,7 +152,7 @@ function Notification() {
                 {window.accountId}
             </a>
             {' '/* React trims whitespace around tags; insert literal space character when needed */}
-      called method: 'setGreeting' in contract:
+            called method: 'setGreeting' in contract:
             {' '}
             <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.contract.contractId}`}>
                 {window.contract.contractId}

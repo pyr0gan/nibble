@@ -1,13 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import { initContract } from './utils'
+import React, { useContext } from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { initContract } from './utils';
+// import { Provider } from './state/app';
 
 window.nearInitPromise = initContract()
-  .then(() => {
-    ReactDOM.render(
-      <App />,
-      document.querySelector('#root')
-    )
-  })
-  .catch(console.error)
+    .then(() => {
+        ReactDOM.render(
+            // <Provider>
+            <App />,
+            // </Provider>
+            document.querySelector('#root')
+        );
+    })
+    .catch(console.error);
