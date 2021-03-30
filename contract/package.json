@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "UNLICENSED",
   "private": true,
- "scripts": {
+  "scripts": {
     "build": "yarn build:as",
     "build:as": "yarn asb ./assembly/main.ts",
     "clean": "rm -rf ./out && (cd contracts/rust && cargo clean)",
@@ -11,6 +11,7 @@
     "test:unit:as": "yarn asp --verbose --nologo -c ../contract/assembly/as-pect.config.js -f unit.spec"
   },
   "dependencies": {
+    "asbuild": "^0.0.11",
     "near-sdk-as": "2.2.4"
   },
   "devDependencies": {

@@ -2012,6 +2012,13 @@ array-unique@^0.3.2:
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
+asbuild@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/asbuild/-/asbuild-0.0.11.tgz#45890d205b193eeeceb68e4154427b5ccaa69058"
+  integrity sha512-j+4UQ/o3QP/0G3Awyir0EyS2prs1EcPgDWQq2y5i5Ygw7rWr938JNOuFk4rV7Yxj0MLwDZC78rZ9DlKB2zut9A==
+  dependencies:
+    yargs "^15.4.1"
+
 ascii-table@0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/ascii-table/-/ascii-table-0.0.9.tgz#06a6604d6a55d4bf41a9a47d9872d7a78da31e73"

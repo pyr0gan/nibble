@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "antd": "^4.14.1",
+    "asbuild": "^0.0.11",
     "assemblyscript": "^0.18.16",
     "near-api-js": "~0.36.3",
     "react": "~17.0.2",
